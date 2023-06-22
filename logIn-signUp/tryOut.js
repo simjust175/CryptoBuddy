@@ -53,8 +53,11 @@ const apiPrinter = (api) =>{
     });
 } 
 
+let priceView = false;
 const setRate = (e) => {
     target = e.target;
+    const h4 = document.createElement("h4");
+    h4.innerHTML = ""
     const div = target.parentElement;
     const coin = div.getAttribute("data-id");
     let currentCoin = urlLoader(`https://api.coingecko.com/api/v3/coins/${coin}`);
@@ -62,7 +65,7 @@ const setRate = (e) => {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            const h4 = document.createElement("h4");
             h4.innerHTML = `<b>$${data.market_data.current_price.usd}</b>`;
-            div.appendChild(h4);})
+            div.appendChild(h4);
+        })
     }
