@@ -24,13 +24,14 @@
         <div class="form login__form">
             <div class="form-content">
                 <h1>Login</h1>
+                <h1 id="login_message"></h1>
                 <form action="#">
                     <div class="field input-field">
-                        <input autofocus="email" placeholder="Enter email" class="input">
+                        <input autofocus="email" placeholder="Enter email" class="input" id="login__inputName">
                     </div>
 
                     <div class="field input-field">
-                        <input type="password" placeholder="Password" class="password">
+                        <input type="password" placeholder="Password" class="password" id="login__inputpwd">
                         <i class='bx bx-hide eye-icon'></i>
                     </div>
 
@@ -73,9 +74,10 @@
         <div class="form signUp__form formHidden">
             <div class="form-content">
                 <h1>Signup</h1>
+                <h1 id="signUp_message"></h1>
                 <form action="#">
                     <div class="field input-field">
-                        <input autofocus type="email" placeholder="Email" class="input">
+                        <input autofocus type="email" placeholder="Email" class="input userName">
                     </div>
 
                     <div class="field input-field">
