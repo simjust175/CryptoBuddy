@@ -21,13 +21,11 @@ const pwdValidator = (pwd) => {
 };
 
 
-//  user name validator.
+//  user name validator checks if username is availble.
 let userNameValidater = (userName) => {
-  database.filter((formerUser) =>{  
-    if (formerUser.name === userName) {  // formerUser.name,includes(userName)
-      throw new Error(`username: ${userName} is already in use`);
-    }
-  })
+  if(database.some(formerUser => formerUser.name === userName)){
+    throw new Error(`username: ${userName} is already in use`);
+  }
   return userName
 };
 
@@ -106,13 +104,13 @@ DOMselector(".", "login__form").addEventListener("submit",(event)=>{
   });
 });
 
-document.querySelector("#link__signUp").addEventListener("click", (e) => {
+document.querySelector(".signup-link").addEventListener("click", (e) => {
   // event.preventDefault();
   login__form.classList.add("formHidden");
   signUp__form.classList.remove("formHidden");
 });
 
-document.querySelector("#link__login").addEventListener("click", (e) => {
+document.querySelector(".login-link").addEventListener("click", (e) => {
   // event.preventDefault();
   login__form.classList.remove("formHidden");
   signUp__form.classList.add("formHidden");

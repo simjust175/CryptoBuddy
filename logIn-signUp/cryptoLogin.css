@@ -32,7 +32,7 @@
     background: #FFF;
 }
 
-.form__hidden{
+.formHidden{
     display: none;
 }
 
@@ -100,7 +100,7 @@ form{
 }
 
 .field button:hover{
-    background-color: #016dcb;
+    background-color: #b18619;
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -155,22 +155,22 @@ form{
     align-items: center;
     justify-content: center;
 }
-a.facebook{
+a.github{
     color: #fff;
-    background-color: #4267b2;
+    background-color: #222222;
 }
-a.facebook .facebook-icon{
+a.github .github-icon{
     height: 28px;
     width: 28px;
-    color: #0171d3;
+    color: #f6f6f6;
     font-size: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: #0b0b0b;
 }
-.facebook-icon,
+.github-icon,
 img.google-img{
     position: absolute;
     top: 50%;
