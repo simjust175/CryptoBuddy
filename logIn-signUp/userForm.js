@@ -19,7 +19,7 @@ const pwdValidator = (pwd) => {
   const pwdValidation = /[A-Za-z]/;///^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
   return pwdValidation.test(pwd);
 };
-
+// const pwdValidator = (pwd) => /[A-Za-z]/.test(pwd); ??
 
 //  user name validator checks if username is availble.
 let userNameValidater = (userName) => {
@@ -32,13 +32,14 @@ let userNameValidater = (userName) => {
 
 //  password validation function.
 const pwdAllSystemsValidator = (signUp__pwd1, signUp__pwd2) => {
-  if ((pwdValidator(signUp__pwd1)) && signUp__pwd1 === signUp__pwd2) {
+  if (signUp__pwd1 === signUp__pwd2  && pwdValidator(signUp__pwd1)) {
     console.log(`signUp__pwd1 == ${signUp__pwd1}`);
     return signUp__pwd1;
-  } else {
-    throw new Error(`pwd: ${signUp__pwd1} is incorrect`)
   }
+  throw new Error(`Invalid password: ${pwd1}`)
+ 
 };
+
 
 // Main registration system.
 let idCounter = 100
