@@ -1,47 +1,63 @@
-body{
-    background: rgb(209, 207, 207);
+
+
+
+
+
+
+.coinDisplay:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* .container{
-    display: flex;
-} */
+.coinName {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-.coinDisplay{
+.coinSymbol {
+    font-size: 14px;
+    color: #888888;
+}
+
+.coinPrice {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* .coinDisplay{
     box-sizing: border-box;
     background: white;
     width: 50px;
-    padding: 4rem;
-    display: flex;
+    /* padding: 8rem; */
+    /* display: flex;
     flex-direction: column;
     border: 0.1px solid white;
-    margin: 3px;
+    margin: 8px; */
     /* flex-wrap: wrap; */
-    justify-content: center;
+    /* justify-content: space-between;
     align-items: center;
     border-radius: 4px;
+} */ 
+
+.coinDisplay:hover{
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-.coins{
+/* .coins{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-}
+    justify-content: flex-end;
+    align-content: space-between;
+    align-items: stretch;
+} */
 
-.button{
-    justify-self: baseline;
-    /* position: ;relative */
-    border: none;
-    width: 100px;
-    padding:10px;
-    margin-top: 5px;
-    background: #3d3df9;
-    border-radius: 4px;
-    box-sizing: block;
-    
-}
+ button{
+  
+} 
 
 .button:hover{
-    background: #2121f7;
+    background: #cbcbdc;
 }
 
 .button:active{

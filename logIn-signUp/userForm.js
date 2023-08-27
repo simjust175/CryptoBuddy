@@ -11,6 +11,7 @@ const DOMselectorWithValue = (attributeType, elementName) => {
   ).value);
 };
 
+
 DOMselector("#", "signUp_message");
 
 //regex for the password & length.
@@ -20,10 +21,13 @@ const isPasswordValid = (pwd) => {
 };
 // const isPasswordValid = (pwd) => /[A-Za-z]/.test(pwd); ??
 
+
 //  user name validator checks if username is availble.
 let userNameValidater = (userName) => {
   if (database.some((formerUser) => formerUser.name === userName)) {
-    throw new Error(`username: ${userName} is already in use`);
+    let userNameInUse = `username: ${userName} is already in use`;
+    signUp_message.innerText = userNameInUse;
+    throw new Error(userNameInUse);
   }
   return userName;
 };
@@ -49,7 +53,7 @@ function UserRegistrationSystem(userName, signUp__pwd1, signUp__pwd2) {
 const database = []; //simulated database;
 const addToDatabase = (user) => {
   database.push(user);
-  console.log(database);
+  console.log(`database: ${JSON.stringify(database)}`);
   // return JSON.stringify(database);
 };
 
@@ -67,7 +71,7 @@ const signUpSystem = (event) => {
       signUp__pwd1,
       signUp__pwd2
     );
-    console.log(`current user: ${user}`);
+    console.log(`current user: ${JSON.stringify(user)}`);
     login__form.classList.remove("formHidden");
     signUp__form.classList.add("formHidden");
     event.target.reset(); // resets the input fields.
@@ -77,37 +81,34 @@ const signUpSystem = (event) => {
   }
 };
 
-//  sign-up event:
-DOMselector(".", "signUp__form").addEventListener("submit", signUpSystem);
-
-// main log-in event.
-DOMselector(".", "login__form").addEventListener("submit", loginSystem(event))
 
 const loginSystem = (event) => {
   event.preventDefault();
-
   DOMselector("#", "login_message");
   DOMselectorWithValue("#", "login__inputName");
   DOMselectorWithValue("#", "login__inputpwd");
 
-  database.filter((currentUser) => {
-    h1.innerHTML = "";
-    if (loginName === currentUser.name && loginPwd === currentUser.pwd) {
-      console.log(currentUser);
+
+  const currentUser = database.find((user) => user.name === login__inputName && user.pwd === login__inputpwd);
+    if (currentUser) {
       console.log("SUCCESS");
       login_message.innerHTML = "ACCESS GRANTED";
       login_message.style.color = "green";
-      return true;
     } else {
       login_message.innerHTML = "ACCESS DENIED";
       login_message.style.color = "red";
       console.log(currentUser);
       console.log("DENIED!!");
       login__form.reset();
-      return false;
-    }
-  });
+    };
+  
 };
+
+//  sign-up event:
+DOMselector(".", "signUp__form").addEventListener("submit", signUpSystem);
+
+// main log-in event.
+DOMselector(".", "login__form").addEventListener("submit", loginSystem);
 
 
 

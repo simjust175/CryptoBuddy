@@ -1,5 +1,5 @@
 const urlLoader = async url => await fetch(url);
-const DOMselecor = (elementName)=>{
+const DOMselector = (elementName)=>{
     return document.querySelector(elementName)
 }
 
@@ -14,44 +14,38 @@ const ElementCreater = (tags, textContent, parentElement)=>{
 }
 
 
-var mainCoinDiv = DOMselecor(".coins");
-const coinGecko = urlLoader("https://api.coingecko.com/api/v3/coins/");
-
-coinGecko
-    .then(res => res.json())
-    .then(data => {data.forEach((coin)=>{
-        // document.querySelector(".coins").innerHTML = `<span>${coin.name}</span>`;
-        // const coinDiv1 = ElementCreater("div", "", mainCoinDiv)
-        const coinDiv = document.createElement("div");
-        coinDiv.classList.add("coinDisplay");
-        coinDiv.setAttribute("data-id" ,coin.id)
-        mainCoinDiv.appendChild(coinDiv);
-
-        // coins name
-        const h3 = document.createElement("h3");
-        h3.innerHTML = `<b>${coin.name}</b>`;
-        coinDiv.appendChild(h3);
-
-        // load the coins icon
-        const img = document.createElement("img")
-        img.src = coin.image.small;
-        coinDiv.appendChild(img);
-        
-        //create button
-        const click = document.createElement("button");
-        click.classList.add("button");
-        click.innerHTML = "get rate";
-        coinDiv.appendChild(click)
-        click.addEventListener("click", setRate);   
-
-    })});
 
 
-const apiPrinter = (api) =>{
-    api.forEach(element => {
-        console.log(element);
-    });
-} 
+const loadCoin = async () => {
+    const res = await fetch("https://api.coingecko.com/api/v3/coins/");
+    const data = await res.json();
+    renderCard(data);
+  };
+
+ const coinCard = (coin)=>{
+    return `<div class="coinDisplay" id=${coin.id}>
+    <div class="coinName"><h3>${coin.name}</h3></div>
+    <div><img src=${coin.image.large} alt=${coin.id}></div>
+    '
+    ]
+    <div class="coinPrice"></div>
+    <div class="overlay">
+        <button type="submit" class="button"> "Get rate" <button>
+    </div>
+</div>`
+ } 
+
+const mainCoinDiv = DOMselector(".coins");
+const overlay = DOMselector(".overlay");
+
+const renderCard = (coins) => {
+    coins.forEach((coin)=>{
+        mainCoinDiv.innerHTML += coinCard(coin)
+
+    })}
+
+loadCoin()
+
 
 let priceView = false;
 const setRate = (e) => {
