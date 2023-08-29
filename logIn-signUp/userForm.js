@@ -1,63 +1,59 @@
-//function to shorten the constent use of  "document.queryDOMSelector"
+// Helper function to select DOM elements
 const DOMselector = (attributeType, elementName) => {
-  return (window[elementName] = document.querySelector(
-    `${attributeType}${elementName}`
-  ));
+  return (window[elementName] = document.querySelector(`${attributeType}${elementName}`));
 };
 
+// Helper function to select DOM elements and retrieve their values
 const DOMselectorWithValue = (attributeType, elementName) => {
-  return (window[elementName] = document.querySelector(
-    `${attributeType}${elementName}`
-  ).value);
+  return (window[elementName] = document.querySelector(`${attributeType}${elementName}`).value);
 };
 
-
+// Select the sign-up message element
 DOMselector("#", "signUp_message");
 
-//regex for the password & length.
+// Function to validate password
 const isPasswordValid = (pwd) => {
-  const pwdValidation = /[A-Za-z]/; ///^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-  return pwdValidation.test(pwd);
+  return /[A-Za-z]/.test(pwd);
 };
-// const isPasswordValid = (pwd) => /[A-Za-z]/.test(pwd); ??
 
-
-//  user name validator checks if username is availble.
-let userNameValidater = (userName) => {
+// Function to validate username availability
+let userNameValidator = (userName) => {
   if (database.some((formerUser) => formerUser.name === userName)) {
-    let userNameInUse = `username: ${userName} is already in use`;
+    let userNameInUse = `Username: ${userName} is already in use`;
     signUp_message.innerText = userNameInUse;
     throw new Error(userNameInUse);
   }
   return userName;
 };
 
-//  password validation function.
+// Function to validate password match and strength
 const passwordValidator = (signUp__pwd1, signUp__pwd2) => {
   if (signUp__pwd1 === signUp__pwd2 && isPasswordValid(signUp__pwd1)) {
-    console.log(`signUp__pwd1 == ${signUp__pwd1}`);
     return signUp__pwd1;
   }
   throw new Error(`Invalid password: ${signUp__pwd1}`);
 };
 
-// Main registration system.
+// Counter for assigning user IDs
 let idCounter = 100;
+
+// UserRegistrationSystem constructor
 function UserRegistrationSystem(userName, signUp__pwd1, signUp__pwd2) {
-  this.name = userNameValidater(userName);
+  this.name = userNameValidator(userName);
   this.pwd = passwordValidator(signUp__pwd1, signUp__pwd2);
   this.id = idCounter++;
 }
 
-// add new 'user' to database(simulated);
-const database = []; //simulated database;
+// Simulated database for users
+const database = [];
+
+// Function to add a user to the database
 const addToDatabase = (user) => {
   database.push(user);
-  console.log(`database: ${JSON.stringify(database)}`);
-  // return JSON.stringify(database);
+  console.log(`Database: ${JSON.stringify(database)}`);
 };
 
-// sign-up main function
+// Sign-up form submission handler
 const signUpSystem = (event) => {
   event.preventDefault();
 
@@ -66,60 +62,52 @@ const signUpSystem = (event) => {
   DOMselectorWithValue(".", "userName");
 
   try {
-    const user = new UserRegistrationSystem(
-      userName,
-      signUp__pwd1,
-      signUp__pwd2
-    );
-    console.log(`current user: ${JSON.stringify(user)}`);
+    const user = new UserRegistrationSystem(userName, signUp__pwd1, signUp__pwd2);
+    console.log(`Current user: ${JSON.stringify(user)}`);
     login__form.classList.remove("formHidden");
     signUp__form.classList.add("formHidden");
-    event.target.reset(); // resets the input fields.
-    addToDatabase(user); // add the user to the user-Database(array).
+    event.target.reset();
+    addToDatabase(user);
   } catch (error) {
     console.error(error.message);
   }
 };
 
-
+// Login form submission handler
 const loginSystem = (event) => {
   event.preventDefault();
   DOMselector("#", "login_message");
   DOMselectorWithValue("#", "login__inputName");
   DOMselectorWithValue("#", "login__inputpwd");
 
-
   const currentUser = database.find((user) => user.name === login__inputName && user.pwd === login__inputpwd);
-    if (currentUser) {
-      console.log("SUCCESS");
-      login_message.innerHTML = "ACCESS GRANTED";
-      login_message.style.color = "green";
-    } else {
-      login_message.innerHTML = "ACCESS DENIED";
-      login_message.style.color = "red";
-      console.log(currentUser);
-      console.log("DENIED!!");
-      login__form.reset();
-    };
-  
+  if (currentUser) {
+    console.log("SUCCESS");
+    login_message.innerHTML = "ACCESS GRANTED";
+    login_message.style.color = "green";
+    window.location.href = '../coinCards/coinCard.html'
+  } else {
+    login_message.innerHTML = "ACCESS DENIED";
+    login_message.style.color = "red";
+    console.log(`${currentUser} DENIED!`);
+    login__form.reset();
+  }
 };
 
-//  sign-up event:
+// Event listener for sign-up form submission
 DOMselector(".", "signUp__form").addEventListener("submit", signUpSystem);
 
-// main log-in event.
+// Event listener for login form submission
 DOMselector(".", "login__form").addEventListener("submit", loginSystem);
 
-
-
+// Event listener for switching to sign-up form
 document.querySelector(".signup-link").addEventListener("click", (e) => {
-  // event.preventDefault();
   login__form.classList.add("formHidden");
   signUp__form.classList.remove("formHidden");
 });
 
+// Event listener for switching to login form
 document.querySelector(".login-link").addEventListener("click", (e) => {
-  // event.preventDefault();
   login__form.classList.remove("formHidden");
   signUp__form.classList.add("formHidden");
 });

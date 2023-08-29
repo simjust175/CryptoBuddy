@@ -1,199 +1,251 @@
-/* Google Fonts - Poppins */
+/* Global styles */
+
+/* Import Google Fonts - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-.container{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url(../assets/cryptoImage11.jpeg);
-    background-position: center;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-color: #4070f4;
-    column-gap: 30px;
-    text-align: center;
-}
-.form{
-    opacity: 80%;
-    position: absolute;
-    max-width: 430px;
-    width: 100%;
-    padding: 30px;
-    border-radius: 6px;
-    /* background: #ffffff2d; */
-    background: #FFF;
+/* Reset default margin and padding & font-family */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.formHidden{
-    display: none;
+/* Container styles */
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../assets/cryptoImage11.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #4070f4;
+  column-gap: 30px;
+  text-align: center;
 }
 
-.arrow{
-    color: #3373cc;
-    font-size: 13px;
+/* Form styles */
+.form {
+  opacity: 80%;
+  position: absolute;
+  max-width: 430px;
+  width: 100%;
+  padding: 30px;
+  border-radius: 6px;
+  /* background: #ffffff2d; */
+  background: #FFF;
 }
 
-header{
-    font-size: 28px;
-    font-weight: 600;
-    color: #ffffff58;
-    text-align: center;
+/* Hide form */
+.formHidden {
+  display: none;
 }
-form{
-    margin-top: 30px;
+
+/* Arrow styles */
+.arrow {
+  color: #3373cc;
+  font-size: 13px;
 }
-.form .field{
-    position: relative;
-    height: 50px;
-    width: 100%;
-    margin-top: 20px;
-    border-radius:var(--border-radius);
+
+/* Header styles */
+header {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff58;
+  text-align: center;
 }
+
+/* Form container styles */
+form {
+  margin-top: 30px;
+}
+
+/* Form field styles */
+.form .field {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: var(--border-radius);
+}
+
+/* Form input and button styles */
 .field input,
-.field button{
-    background-color: #CACACA;
-    height: 100%;
-    width: 100%;
-    border: none;
-    font-size: 16px;
-    font-weight: 400;
-    border-radius: var(--border-radius);
+.field button {
+  background-color: #CACACA;
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: var(--border-radius);
 }
 
-.field input:focus{
-    border-bottom-width: 2px;
+/* Form input focus styles */
+.field input:focus {
+  border-bottom-width: 2px;
 }
 
-.field input{
-    opacity: 100%;
-    display: block;
-    outline: none;
-    width: 100%;
-    padding: 0.95rem;
-    box-sizing: border-box;
-    border: 1.5px solid #d6d0d0f9;
-    background: #dfdbdb;
-    transition: background 0.2s border-color 0.2s;
-    margin-bottom: 1.5rem;
-    border-radius: var(--border-radius);
-    
+/* Form input styles */
+.field input {
+  opacity: 100%;
+  display: block;
+  outline: none;
+  width: 100%;
+  padding: 0.95rem;
+  box-sizing: border-box;
+  border: 1.5px solid #d6d0d0f9;
+  background: #dfdbdb;
+  transition: background 0.2s, border-color 0.2s;
+  margin-bottom: 1.5rem;
+  border-radius: var(--border-radius);
 }
 
-.field input:focus{
-    border-color: var(--color-primary);
-    background: #ffffff;
+/* Form input focus styles */
+.field input:focus {
+  border-color: var(--color-primary);
+  background: #ffffff;
 }
 
-.field button{
-    color: #fff;
-    background-color: #c9991f;
-    transition: all 0.3s ease;
-    cursor: pointer;
+/* Form button styles */
+.field button {
+  color: #fff;
+  background-color: #c9991f;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.field button:hover{
-    background-color: #b18619;
+/* Form button hover styles */
+.field button:hover {
+  background-color: #b18619;
 }
 
-/* <<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> */
-
-.eye-icon{
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #8b8b8b;
-    cursor: pointer;
-    padding: 5px;
+/* Eye icon styles */
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #8b8b8b;
+  cursor: pointer;
+  padding: 5px;
 }
 
-.form-link{
-    text-align: center;
-    margin-top: 10px;
+/* Form link styles */
+.form-link {
+  text-align: center;
+  margin-top: 10px;
 }
+
+/* Form link text styles */
 .form-link span,
-.form-link a{
-    font-size: 14px;
-    font-weight: 400;
-    color: #232836;
-}
-.form a{
-    color: #0171d3;
-    text-decoration: none;
-}
-.form-content a:hover{
-    text-decoration: underline;
-}
-.line{
-    position: relative;
-    height: 1px;
-    width: 100%;
-    margin: 36px 0;
-    background-color: #d4d4d4;
-}
-.line::before{
-    content: 'Or';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #FFF;
-    color: #8b8b8b;
-    padding: 0 15px;
-}
-.media-options a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-a.github{
-    color: #fff;
-    background-color: #222222;
-}
-a.github .github-icon{
-    height: 28px;
-    width: 28px;
-    color: #f6f6f6;
-    font-size: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #0b0b0b;
-}
-.github-icon,
-img.google-img{
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-}
-img.google-img{
-    height: 20px;
-    width: 20px;
-    object-fit: cover;
-}
-a.google{
-    border: 1px solid #CACACA;
-}
-a.google span{
-    font-weight: 500;
-    opacity: 0.6;
-    color: #232836;
+.form-link a {
+  font-size: 14px;
+  font-weight: 400;
+  color: #232836;
 }
 
+/* Form link hover styles */
+.form a {
+  color: #0171d3;
+  text-decoration: none;
+}
+
+/* Form content link hover styles */
+.form-content a:hover {
+  text-decoration: underline;
+}
+
+/* Line separator styles */
+.line {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  margin: 36px 0;
+  background-color: #d4d4d4;
+}
+
+/* Line separator text styles */
+.line::before {
+  content: 'Or';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  color: #8b8b8b;
+  padding: 0 15px;
+}
+
+/* signUp message */
+
+#signUp_message{
+    font-size: 15px;
+    color: red;
+    font-weight: normal;
+}
+
+/* Social media options styles */
+.media-options a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* GitHub link styles */
+a.github {
+  color: #fff;
+  background-color: #222222;
+}
+
+/* GitHub icon styles */
+a.github .github-icon {
+  height: 28px;
+  width: 28px;
+  color: #f6f6f6;
+  font-size: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b0b0b;
+}
+
+/* GitHub icon and Google image positioning styles */
+.github-icon,
+img.google-img {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+}
+
+/* Google image styles */
+img.google-img {
+  height: 20px;
+  width: 20px;
+  object-fit: cover;
+}
+
+/* Google link styles */
+a.google {
+  border: 1px solid #CACACA;
+}
+
+/* Google link text styles */
+a.google span {
+  font-weight: 500;
+  opacity: 0.6;
+  color: #232836;
+}
+
+/* Responsive styles for screens up to 400px */
 @media screen and (max-width: 400px) {
-    .form{
-        padding: 20px 10px;
-    }
-    
+  .form {
+    padding: 20px 10px;
+  }
 }
