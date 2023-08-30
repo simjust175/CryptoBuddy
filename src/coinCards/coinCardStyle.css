@@ -179,7 +179,7 @@ img {
 .pastDayChange{
     display: flex;
     align-items: center;
-    color: #303030;
+    color: #4a4a4aec;
     font-size: smaller;
     align-content: center;
 }
