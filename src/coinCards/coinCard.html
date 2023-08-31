@@ -13,17 +13,62 @@
 </head>
 
 <body>
-    <div class="container">
+    
         <header>
+            <div class="logo">
+                <img src="../assets/CryptoBuddyPNGnw.png" alt="CryptoBuddy">
+            </div>
+            <div class="currancySelector">
+              <button type="button" class="currencySelectorButton selectedCurrency" id="usd"  data-id="usd" value="usd">$</button>
+              <button type="button" class="currencySelectorButton" id="ils"  data-id="ils" value="ils">&#8362;</button>
+            </div>
             
-            <nav><input type="text" id="searchBar" placeholder="Search coins:"></nav>
-        </header>
-        
+              <input type="text" id="searchBar" placeholder="Search coins">
+              <nav>
+              <ul class="navbar">
+                <li><a href="#">Protofolio</a></li>
+                <li><a href="#">Alerts</a></li>
+                <li><a href="#">Live charts</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </nav>
+            <div class="profile" href="../protifolio/protofolio.html">SJ</div>
+          </header>
+          <div class="container">
         <div class="coins">
             <!-- Add more coin cards dynamically using JavaScript -->
         </div>
     </div>
-    <script src="../utilityFunctions/utillityFunctions.js"></script>
+
+    <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-links">
+              <ul class="footer-navbar">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-logo">
+              <img src="../assets/cryptoGifSubs.gif" alt="Company Logo">
+            </div>
+            <div class="footer-social">
+              <ul class="social-media">
+                <li><a href="#"><i class='bx bxl-facebook-circle footerIcons'></i></a></li>
+                <li><a href="#"><i class='bx bxl-twitter footerIcons'></i></a></li>
+                <li><a href="#"><i class='bx bxl-instagram-alt footerIcons'></i></a></li>
+                <li><a href="#"><i class='bx bxl-linkedin footerIcons'></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            &copy; 2023 Crypto Buddy. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    <!-- <script src="../utilityFunctions/utillityFunctions.js"></script> -->
     <script src="./coinCards.js"></script>
 </body>
 

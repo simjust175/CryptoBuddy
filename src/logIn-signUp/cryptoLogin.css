@@ -11,6 +11,19 @@
   font-family: 'Poppins', sans-serif;
 }
 
+:root{
+  --border-radius: 4px;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background-image: url(../assets/cryptoImageG-B3.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-color: #edb259;
+}
+
 /* Container styles */
 .container {
   height: 100vh;
@@ -18,11 +31,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(../assets/cryptoImage11.jpeg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: #4070f4;
   column-gap: 30px;
   text-align: center;
 }
@@ -35,7 +43,6 @@
   width: 100%;
   padding: 30px;
   border-radius: 6px;
-  /* background: #ffffff2d; */
   background: #FFF;
 }
 
@@ -80,7 +87,7 @@ form {
   width: 100%;
   border: none;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   border-radius: var(--border-radius);
 }
 

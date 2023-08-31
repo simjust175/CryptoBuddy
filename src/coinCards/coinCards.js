@@ -3,13 +3,13 @@ const DOMselector = (elementName) => {
   return document.querySelector(elementName);
 };
 
+// function to add commas to numbers using .toLocaleString() function
+const addCommatoNumber = (number) => number.toLocaleString();
+
+
 // Coin card template
 const coinCard = (coin) => {
-  const {
-    id,
-    name,
-    image: { large },
-  } = coin;
+  const { id, name, image: { large }, } = coin;
   return `
       <div class="coinCard" data-id="${id}">
         <button type="button" class="addCoinButton" data-id="${name}"><h3>+</h3></button>
@@ -17,7 +17,7 @@ const coinCard = (coin) => {
           <h3>${name}</h3>
         </div>
         <div>
-          <img src="${large}" alt="${id}">
+          <img class="cryptoIcons" src="${large}" alt="${id}">
         </div>
         <div class="coinPrice" id="coinPrice${id}"></div>
         <div class="pastDayChange" id="pastDayChange${id}"></div>
@@ -82,7 +82,6 @@ const loadCoin = async () => {
 // Event handler for price button
 const priceEventHandler = (event) => {
   const target = event.target.parentElement;
-  console.log(target);
   target.classList.add("hidden");
   const currentCard = target.parentElement;
   const currentCoin = currentCard.getAttribute("data-id");
@@ -102,23 +101,49 @@ const getRate = async (currentCoin) => {
   }
 };
 
-// Render coin rate
+
+//  select currency  //
+
+const usd = DOMselector("#usd");
+const ils = DOMselector("#ils");
+
+const currencySelector = (e) => {
+  const target = e.target.id;
+  let currency = ""
+  usd.classList.toggle("selectedCurrency", currency === "usd");
+  ils.classList.toggle("selectedCurrency", currency === "ils");
+  console.log(currency);
+  return currency;
+};
+
+usd.addEventListener("click", currencySelector);
+ils.addEventListener("click", currencySelector);
+
+
+
+// Render coin rate //
+
 const renderRate = (data) => {
-  const {
-    id,
-    market_data: { current_price, price_change_24h },
-  } = data;
+  const { id, market_data: { current_price, price_change_24h } } = data;
+
   const priceDisplay = DOMselector(`#coinPrice${id}`);
   const pastDayChange = DOMselector(`#pastDayChange${id}`);
-  const currencyOfChoice = "usd";
+
+  const currencyOfChoice = currencySelector();
   const currencyDisplay = {
     usd: "$",
     ils: "₪",
   };
+
   const marketStatus = price_change_24h > 0 ? "up" : "down";
-  priceDisplay.innerHTML = `${currencyDisplay[currencyOfChoice]}${current_price[currencyOfChoice]}`;
+
+  priceDisplay.innerHTML =
+   `${currencyDisplay[currencyOfChoice]}${addCommatoNumber(current_price[currencyOfChoice])}`;
+
   priceDisplay.classList.add(`${marketStatus}`);
-  pastDayChange.innerHTML = `<i class='bx bxs-${marketStatus}-arrow ${marketStatus}'></i> ${currencyDisplay[currencyOfChoice]}${price_change_24h}`;
+
+  pastDayChange.innerHTML = `<i class='bx bxs-${marketStatus}-arrow ${marketStatus}'></i>
+   ${currencyDisplay[currencyOfChoice]}${addCommatoNumber(price_change_24h)}`;
 };
 
 // Call the loadCoin function to initiate loading of coins
