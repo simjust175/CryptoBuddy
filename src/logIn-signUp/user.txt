@@ -1,0 +1,64 @@
+// Function to validate password strength
+const isPasswordValid = (pwd) => /[A-Za-z]/.test(pwd);
+
+// Database module for managing users
+const Database = {
+  users: [],
+  addUser(user) {
+    if (this.users.some((formerUser) => formerUser.name === user.name)) {
+      throw new Error(`Username: ${user.name} is already in use`);
+    }
+    this.users.push(user);
+  }
+};
+
+// UserRegistrationSystem class
+class UserRegistrationSystem {
+  constructor(userName, signUp__pwd1, signUp__pwd2) {
+    this.validateUserName(userName);
+    this.validatePasswords(signUp__pwd1, signUp__pwd2);
+    this.name = userName;
+    this.pwd = signUp__pwd1;
+    this.id = UserRegistrationSystem.generateId();
+  }
+
+  validateUserName(userName) {
+    if (!userName || typeof userName !== 'string') {
+      throw new Error('Invalid username');
+    }
+  }
+
+  validatePasswords(pwd1, pwd2) {
+    if (pwd1 !== pwd2 || !isPasswordValid(pwd1)) {
+      throw new Error('Invalid password');
+    }
+  }
+
+  static generateId() {
+    if (!UserRegistrationSystem.idCounter) {
+      UserRegistrationSystem.idCounter = 100;
+    }
+    return UserRegistrationSystem.idCounter++;
+  }
+}
+
+// Sign-up form submission handler
+const signUpSystem = (event) => {
+  event.preventDefault();
+
+  const userName = document.querySelector('.userName').value;
+  const signUp__pwd1 = document.querySelector('#signUp__pwd1').value;
+  const signUp__pwd2 = document.querySelector('#signUp__pwd2').value;
+
+  try {
+    const user = new UserRegistrationSystem(userName, signUp__pwd1, signUp__pwd2);
+    console.log(`Current user: ${JSON.stringify(user)}`);
+    login__form.classList.remove(
+        'formHidden');
+    signUp__form.classList.add('formHidden');
+    event.target.reset();
+    Database.addUser(user);
+  } catch (error) {
+    console.error(error.message);
+  }
+};

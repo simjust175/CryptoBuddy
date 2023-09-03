@@ -95,55 +95,55 @@ const getRate = async (currentCoin) => {
       `https://api.coingecko.com/api/v3/coins/${currentCoin}`
     );
     const data = await res.json();
-    renderRate(data);
+    const selectedCurrency = currency; // Get the selected currency
+    console.log(selectedCurrency);
+    renderRate(data, selectedCurrency); // Pass the selected currency to the renderRate function
   } catch (error) {
     throw new Error("An error occurred: " + error);
   }
 };
 
-
-//  select currency  //
-
+// Select currency
 const usd = DOMselector("#usd");
 const ils = DOMselector("#ils");
 
+// gets the selected currency from the buttons
+let currency = "usd"
 const currencySelector = (e) => {
-  const target = e.target.id;
-  let currency = ""
-  usd.classList.toggle("selectedCurrency", currency === "usd");
-  ils.classList.toggle("selectedCurrency", currency === "ils");
-  console.log(currency);
+  currency = e.target.id;
+  console.log(`is it true? ${currency}`);
+  const clickedCurrency =  currency ? currency : "usd";
+  usd.classList.toggle("selectedCurrency", clickedCurrency === "usd");
+  ils.classList.toggle("selectedCurrency", clickedCurrency === "ils");
   return currency;
 };
 
-usd.addEventListener("click", currencySelector);
-ils.addEventListener("click", currencySelector);
+
+  usd.addEventListener("click", currencySelector);
+  ils.addEventListener("click", currencySelector);
 
 
 
-// Render coin rate //
-
-const renderRate = (data) => {
-  const { id, market_data: { current_price, price_change_24h } } = data;
+// Render coin rate
+const renderRate = (data, selectedCurrency) => {
+  const { id, market_data: { current_price, price_change_24h_in_currency } } = data;
 
   const priceDisplay = DOMselector(`#coinPrice${id}`);
   const pastDayChange = DOMselector(`#pastDayChange${id}`);
 
-  const currencyOfChoice = currencySelector();
   const currencyDisplay = {
     usd: "$",
     ils: "₪",
   };
 
-  const marketStatus = price_change_24h > 0 ? "up" : "down";
+  const marketStatus = price_change_24h_in_currency > 0 ? "up" : "down";
 
-  priceDisplay.innerHTML =
-   `${currencyDisplay[currencyOfChoice]}${addCommatoNumber(current_price[currencyOfChoice])}`;
+  priceDisplay.innerHTML = `${currencyDisplay[selectedCurrency]}${addCommatoNumber(current_price[selectedCurrency])}`;
 
   priceDisplay.classList.add(`${marketStatus}`);
 
   pastDayChange.innerHTML = `<i class='bx bxs-${marketStatus}-arrow ${marketStatus}'></i>
-   ${currencyDisplay[currencyOfChoice]}${addCommatoNumber(price_change_24h)}`;
+   ${currencyDisplay[selectedCurrency]}${addCommatoNumber(price_change_24h_in_currency[selectedCurrency])}`;
 };
 
 // Call the loadCoin function to initiate loading of coins

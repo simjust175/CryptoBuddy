@@ -12,9 +12,7 @@ const DOMselectorWithValue = (attributeType, elementName) => {
 DOMselector("#", "signUp_message");
 
 // Function to validate password
-const isPasswordValid = (pwd) => {
-  return /[A-Za-z]/.test(pwd);
-};
+const isPasswordValid = (pwd) =>  /[A-Za-z]/.test(pwd);
 
 // Function to validate username availability
 let userNameValidator = (userName) => {
@@ -50,7 +48,6 @@ const database = [];
 // Function to add a user to the database
 const addToDatabase = (user) => {
   database.push(user);
-  console.log(`Database: ${JSON.stringify(database)}`);
 };
 
 // Sign-up form submission handler
