@@ -132,8 +132,16 @@ nav {
 }
 
 /* protifolio disply styles */
+.exitProtifolio{
+    position: absolute;
+    left: 3px;
+    top: 38px;
+    font-weight: bold;
+    font-size: 10px;
+    color: #0e980e;
+}
 .protifolioDisplay{
-    width: 250px;
+    width: 350px;
     height:auto;
     position: absolute;
     top: 100px;
@@ -141,12 +149,14 @@ nav {
     background-color: #8aa4fa;
     padding: 1rem;
     border-radius: 6px;
+    z-index: 1; /* coin cards shouldn't block it on their hover */
 }
 
 .protifolioDisplayCard{
     margin-top: 3px;
     height: 30px;
     display: flex;
+    justify-content: space-between;
     background-color: #fff;
     padding: 0.8rem;
     align-items: center;
@@ -154,6 +164,27 @@ nav {
 
 .protifolioDisplayCard:first-child{
     margin-top: 35px;
+}
+
+.protifolioDisplayCard:hover{
+    background-color: #ddd;
+}
+.protifolioDisplayCard:hover button{
+    background-color: #fff;
+}
+
+.removeFromProtifolio{
+    padding: 0.5rem;
+    background-color: #ddd;
+    font-weight: bold;
+    margin: 3px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.removeFromProtifolio:hover{
+    background-color: #5e5d5d;
+    color: #fff;
 }
 
 /* Coin grid styles */
@@ -209,6 +240,7 @@ nav {
 .addCoinButton::after {
     background-color: rgb(14, 162, 49);
 }
+
 
 
 /* Button styles */

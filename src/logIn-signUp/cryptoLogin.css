@@ -13,6 +13,7 @@
 
 :root{
   --border-radius: 4px;
+  --color-primary: #333;
 }
 
 body{
@@ -148,7 +149,7 @@ form {
 
 /* Form button hover styles */
 .field button:hover {
-  background-color: #b18619;
+  background-color: #d2c9b4;
 }
 
 /* Eye icon styles */

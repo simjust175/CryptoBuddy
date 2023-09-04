@@ -156,19 +156,25 @@ const sortedProtifolio = protifolio.sort();
 
 // 'regular' function in-order to use 'this'
 function addCoinEventHandler(e) {
-  let button = e.target.parentNode;
-  const coinToAdd = (type) => button.getAttribute(`data-${type}`);
-  console.log(button);
-  const coinName = coinToAdd('name');
-  const coinId = coinToAdd('id');
-  const coinImg = coinToAdd('img');
-
-  if (coinName) {
-      protifolio.push({ coin: `${coinName}`, img: `${coinImg}`, id: `${coinId}` });
-      this.classList.toggle("coinAdded");
-      this.innerHTML = "-";
-    } 
+  const target = e.target;
+  const eventOnChild = target.localName === 'h3';
+  const button = eventOnChild ? target.parentNode : target;
+  const coinName = button.dataset.name;
   
+  if (coinName && !protifolio.some((coin) => coin.coin === coinName)) {
+    protifolio.push({
+      coin: coinName,
+      img: button.dataset.img,
+      id: button.dataset.id
+    });
+    
+    button.classList.toggle('coinAdded');
+    button.innerHTML = '-';
+  }
+}
+
+const removeCoinFromProtifolio = () =>{
+
 }
 
 const protifolioButton = DOMselector(".protifolio");
@@ -193,6 +199,7 @@ const protifolioItems = async (protifolio) => {
 
 const showProtifolio = async (protifolio) => {
   protifolioDisplay.classList.toggle("hidden");
+  protifolioDisplay.innerHTML = "";
   for (const item of protifolio) {
     console.log(item);
     const protifolioItem = await protifolioItems(item);
