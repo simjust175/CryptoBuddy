@@ -12,7 +12,7 @@ const coinCard = (coin) => {
   const { id, name, image: { large, small }, } = coin;
   return `
       <div class="coinCard" data-id="${id}">
-        <button type="button" class="addCoinButton" data-id="${name}" data-img="${name}"><h3>+</h3></button>
+        <button type="button" class="addCoinButton" data-id="${id}" data-name="${name}" data-img="${small}"><h3>+</h3></button>
         <div class="coinName">
           <h3>${name}</h3>
         </div>
@@ -35,6 +35,7 @@ const addEventListenersToButtons = () => {
     button.addEventListener("click", priceEventHandler);
   });
 };
+
 
 const addEventListenersToAddCoinButtons = () => {
   const addCoinButtons = document.querySelectorAll(".addCoinButton");
@@ -85,19 +86,18 @@ const priceEventHandler = (event) => {
   target.classList.add("hidden");
   const currentCard = target.parentElement;
   const currentCoin = currentCard.getAttribute("data-id");
-  getRate(currentCoin);
+  getRate(currentCoin, 'main');
 };
 
 // Fetch coin rate
-const getRate = async (currentCoin) => {
+const getRate = async (currentCoin, main) => {
   try {
     const res = await fetch(
       `https://api.coingecko.com/api/v3/coins/${currentCoin}`
     );
     const data = await res.json();
     const selectedCurrency = currency; // Get the selected currency
-    console.log(selectedCurrency);
-    renderRate(data, selectedCurrency); // Pass the selected currency to the renderRate function
+    main ? renderRate(data, selectedCurrency) : data;
   } catch (error) {
     throw new Error("An error occurred: " + error);
   }
@@ -112,15 +112,15 @@ let currency = "usd"
 const currencySelector = (e) => {
   currency = e.target.id;
   console.log(`is it true? ${currency}`);
-  const clickedCurrency =  currency ? currency : "usd";
+  const clickedCurrency = currency ? currency : "usd";
   usd.classList.toggle("selectedCurrency", clickedCurrency === "usd");
   ils.classList.toggle("selectedCurrency", clickedCurrency === "ils");
   return currency;
 };
 
 
-  usd.addEventListener("click", currencySelector);
-  ils.addEventListener("click", currencySelector);
+usd.addEventListener("click", currencySelector);
+ils.addEventListener("click", currencySelector);
 
 
 
@@ -153,31 +153,52 @@ loadCoin();
 
 const protifolio = [];
 const sortedProtifolio = protifolio.sort();
+
 // 'regular' function in-order to use 'this'
 function addCoinEventHandler(e) {
-  this.classList.toggle("coinAdded");
-  const coinToAdd = e.target.parentElement.dataset;
-  console.log(coinToAdd);
-  protifolio.push({coin: coinToAdd, });
-  this.innerHTML = "-"
+  let button = e.target.parentNode;
+  const coinToAdd = (type) => button.getAttribute(`data-${type}`);
+  console.log(button);
+  const coinName = coinToAdd('name');
+  const coinId = coinToAdd('id');
+  const coinImg = coinToAdd('img');
+
+  if (coinName) {
+      protifolio.push({ coin: `${coinName}`, img: `${coinImg}`, id: `${coinId}` });
+      this.classList.toggle("coinAdded");
+      this.innerHTML = "-";
+    } 
+  
 }
 
 const protifolioButton = DOMselector(".protifolio");
 const protifolioDisplay = DOMselector(".protifolioDisplay");
 
-const protifolioItems = (protifolio) => {
-  return `<div class="protifolioDisplayCard">${protifolio.coin} <div class="removeFromProtifolio"> - </div></div>`
-}
+const protifolioItems = async (protifolio) => {
+  const { img, coin, id } = protifolio;
+  try {
+    const rateData = await getRate(id, false);
+    const rate = console.log(rateData);;
+    return `
+      <div class="protifolioDisplayCard">
+        <img src="${img}" alt="${coin}">
+        ${coin} ${rate}
+        <div class="removeFromProtifolio"> - </div>
+      </div>`;
+  } catch (error) {
+    console.error(error);
+    return '';
+  }
+};
 
-const showProtifolio = (protifolio) => {
+const showProtifolio = async (protifolio) => {
   protifolioDisplay.classList.toggle("hidden");
-  console.log(protifolio.sort());
-  protifolio.forEach((item) => {
+  for (const item of protifolio) {
     console.log(item);
-    protifolioDisplay.innerHTML += protifolioItems(item);
-  })
-  
-}
+    const protifolioItem = await protifolioItems(item);
+    protifolioDisplay.innerHTML += protifolioItem;
+  }
+};
 
-protifolioButton.addEventListener("click", function() {showProtifolio(sortedProtifolio)})
+protifolioButton.addEventListener("click", function () { showProtifolio(sortedProtifolio) })
 

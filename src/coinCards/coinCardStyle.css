@@ -189,7 +189,8 @@ nav {
 .coinAdded {
     /* Popped-in look when active */
     transform: translateY(0);
-    background-color: #dddddd;
+    background-color: #0c7dbe;
+    color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
