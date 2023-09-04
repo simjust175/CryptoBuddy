@@ -9,10 +9,10 @@ const addCommatoNumber = (number) => number.toLocaleString();
 
 // Coin card template
 const coinCard = (coin) => {
-  const { id, name, image: { large }, } = coin;
+  const { id, name, image: { large, small }, } = coin;
   return `
       <div class="coinCard" data-id="${id}">
-        <button type="button" class="addCoinButton" data-id="${name}"><h3>+</h3></button>
+        <button type="button" class="addCoinButton" data-id="${name}" data-img="${name}"><h3>+</h3></button>
         <div class="coinName">
           <h3>${name}</h3>
         </div>
@@ -152,11 +152,32 @@ loadCoin();
 // add coin to protofolio
 
 const protifolio = [];
+const sortedProtifolio = protifolio.sort();
 // 'regular' function in-order to use 'this'
 function addCoinEventHandler(e) {
-  this.classList.toggle("active");
-  const coinToAdd = e.target.parentElement.dataset.id;
-  protifolio.push(coinToAdd);
-  console.log(protifolio.sort());
+  this.classList.toggle("coinAdded");
+  const coinToAdd = e.target.parentElement.dataset;
+  console.log(coinToAdd);
+  protifolio.push({coin: coinToAdd, });
+  this.innerHTML = "-"
 }
+
+const protifolioButton = DOMselector(".protifolio");
+const protifolioDisplay = DOMselector(".protifolioDisplay");
+
+const protifolioItems = (protifolio) => {
+  return `<div class="protifolioDisplayCard">${protifolio.coin} <div class="removeFromProtifolio"> - </div></div>`
+}
+
+const showProtifolio = (protifolio) => {
+  protifolioDisplay.classList.toggle("hidden");
+  console.log(protifolio.sort());
+  protifolio.forEach((item) => {
+    console.log(item);
+    protifolioDisplay.innerHTML += protifolioItems(item);
+  })
+  
+}
+
+protifolioButton.addEventListener("click", function() {showProtifolio(sortedProtifolio)})
 

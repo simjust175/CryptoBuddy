@@ -1,4 +1,3 @@
-Sure! Here's an example of a README document for your website "cryptoBuddy" that provides real-time pricing for cryptocurrencies:
 
 # cryptoBuddy
 cryptoBuddy is a website that provides real-time pricing information for various cryptocurrencies.
