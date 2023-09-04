@@ -36,7 +36,7 @@ header {
     width: 100%;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    position:fixed;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -50,7 +50,7 @@ header {
     transition: all 0.3s ease-in-out;
 }
 
-.logo img:hover{
+.logo img:hover {
     cursor: pointer;
     transform: scale(1.10);
 }
@@ -122,37 +122,49 @@ nav {
     transition: all 0.4s ease;
 }
 
-.profile:hover{
+.profile:hover {
     transform: scale(1.05);
     cursor: pointer;
 }
 
-.profile:active{
+.profile:active {
     transform: scale(0.9);
 }
 
 /* protifolio disply styles */
-.exitProtifolio{
+.exitProtifolio {
     position: absolute;
-    left: 3px;
-    top: 38px;
+    right: 8px;
+    top: 13px;
     font-weight: bold;
-    font-size: 10px;
-    color: #0e980e;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
 }
-.protifolioDisplay{
+
+.exitProtifolio:hover{
+    transform: rotate(360deg) scale(1.5);
+    color: #034c8b;
+}
+
+.exitProtifolio:active{
+    color: red;
+}
+
+.protifolioDisplay {
     width: 350px;
-    height:auto;
+    height: auto;
     position: absolute;
-    top: 100px;
+    top: 120px;
     right: 100px;
     background-color: #8aa4fa;
     padding: 1rem;
+    padding-top: 40px;
     border-radius: 6px;
-    z-index: 1; /* coin cards shouldn't block it on their hover */
+    z-index: 1;
+    /* coin cards shouldn't block the protofolio on hover */
 }
 
-.protifolioDisplayCard{
+.protifolioDisplayCard {
     margin-top: 3px;
     height: 30px;
     display: flex;
@@ -162,18 +174,19 @@ nav {
     align-items: center;
 }
 
-.protifolioDisplayCard:first-child{
-    margin-top: 35px;
+.protifolioDisplayCard:first-child {
+    margin-top: 65px;
 }
 
-.protifolioDisplayCard:hover{
+.protifolioDisplayCard:hover {
     background-color: #ddd;
 }
-.protifolioDisplayCard:hover button{
+
+.protifolioDisplayCard:hover button {
     background-color: #fff;
 }
 
-.removeFromProtifolio{
+.removeFromProtifolio {
     padding: 0.5rem;
     background-color: #ddd;
     font-weight: bold;
@@ -182,7 +195,7 @@ nav {
     cursor: pointer;
 }
 
-.removeFromProtifolio:hover{
+.removeFromProtifolio:hover {
     background-color: #5e5d5d;
     color: #fff;
 }
@@ -209,7 +222,7 @@ nav {
     top: 20px;
     right: 20px;
     background-color: #bacdbb;
-    
+
     /* 3D effect */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px) translateZ(2);
@@ -427,7 +440,7 @@ footer {
 }
 
 .footer-navbar li a {
-    color:#fff;
+    color: #fff;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -481,7 +494,7 @@ footer {
     transform: scale(0.95);
 }
 
-.social-media li a:hover .footerIcons{
+.social-media li a:hover .footerIcons {
     color: #eaf1ff;
     outline-color: #eaf1ff;
     transform: scale(1.05);
@@ -493,7 +506,7 @@ footer {
     text-align: center;
 }
 
-.chatButtons{
+.chatButtons {
     /* position: sticky; */
     display: flex;
     flex-direction: column;
@@ -503,16 +516,18 @@ footer {
     z-index: 9999;
 }
 
-.chatBot, .bxs-chevron-up{
+.chatBot,
+.bxs-chevron-up {
     font-size: 40px;
 }
 
-a{
+a {
     text-decoration: none;
     color: #1d83f1;
 }
 
-.chat, .scrollButton {
+.chat,
+.scrollButton {
     background-color: #023460;
     color: #1d83f1;
     height: 65px;
@@ -525,18 +540,21 @@ a{
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
-  }
-  
-  .chat:hover, .scrollButton:hover, .scrollButton a:hover{
+}
+
+.chat:hover,
+.scrollButton:hover,
+.scrollButton a:hover {
     background-color: #1d83f1;
     color: #fff;
     transform: scale(1.05);
-  }
-  
-  .chat:focus, .scrollButton:focus {
+}
+
+.chat:focus,
+.scrollButton:focus {
     outline: none;
-  }
-  
+}
+
 
 
 /* Media Query for smartphones */
@@ -556,7 +574,7 @@ a{
         order: -1;
     }
 
-    img{
+    img {
         height: 70px;
         width: 70px;
     }
@@ -578,20 +596,20 @@ a{
         align-items: flex-start;
         width: 100%;
     }
-    
+
     /* Adjust logo styles */
     .logo img {
         height: 150px;
         width: 150px;
     }
-    
+
     /* Adjust search bar styles */
     #searchBar {
         width: 100%;
         margin-right: 0;
         margin-bottom: 10px;
     }
-    
+
     /* Adjust currency selector styles */
     .currencySelector {
         flex-direction: column;

@@ -12,7 +12,7 @@ const DOMselectorWithValue = (attributeType, elementName) => {
 DOMselector("#", "signUp_message");
 
 // Function to validate password
-const isPasswordValid = (pwd) =>  /[A-Za-z]/.test(pwd);
+const isPasswordValid = (pwd) => /[A-Za-z]/.test(pwd);
 
 // Function to validate username availability
 let userNameValidator = (userName) => {

@@ -36,7 +36,7 @@ const addEventListenersToButtons = () => {
   });
 };
 
-
+// Event listener function for addCoin buttons
 const addEventListenersToAddCoinButtons = () => {
   const addCoinButtons = document.querySelectorAll(".addCoinButton");
   addCoinButtons.forEach((button) => {
@@ -160,21 +160,17 @@ function addCoinEventHandler(e) {
   const eventOnChild = target.localName === 'h3';
   const button = eventOnChild ? target.parentNode : target;
   const coinName = button.dataset.name;
-  
+
   if (coinName && !protifolio.some((coin) => coin.coin === coinName)) {
     protifolio.push({
       coin: coinName,
       img: button.dataset.img,
       id: button.dataset.id
     });
-    
+
     button.classList.toggle('coinAdded');
     button.innerHTML = '-';
   }
-}
-
-const removeCoinFromProtifolio = () =>{
-
 }
 
 const protifolioButton = DOMselector(".protifolio");
@@ -193,19 +189,33 @@ const protifolioItems = async (protifolio) => {
       </div>`;
   } catch (error) {
     console.error(error);
-    return '';
   }
 };
 
 const showProtifolio = async (protifolio) => {
   protifolioDisplay.classList.toggle("hidden");
   protifolioDisplay.innerHTML = "";
+  protifolioDisplay.innerHTML = `<div class="exitProtifolio">X</div>`;
   for (const item of protifolio) {
-    console.log(item);
     const protifolioItem = await protifolioItems(item);
     protifolioDisplay.innerHTML += protifolioItem;
+    addEventToExit()
+    addEventToRemoveCoin()
   }
 };
 
+const removeCoin = (e) => {
+    console.log(e.target);
+}
+
 protifolioButton.addEventListener("click", function () { showProtifolio(sortedProtifolio) })
 
+const addEventToRemoveCoin = () => {
+  const removeFromProtifolio = DOMselector(".removeFromProtifolio");
+  removeFromProtifolio.addEventListener("click", removeCoin);
+}
+
+const addEventToExit = () => {
+  const exitProtifolio = DOMselector(".exitProtifolio");
+  exitProtifolio.addEventListener("click", () => protifolioDisplay.classList.add("hidden"))
+}
