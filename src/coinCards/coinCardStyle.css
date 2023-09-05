@@ -254,7 +254,46 @@ nav {
     background-color: rgb(14, 162, 49);
 }
 
+/* coin added message  */
+.addToCoinStatus{
+    position: absolute;
+    top: 45%;
+    left: 15%;
+    border-radius: 8px;
+    background-color: #d9ff00b7;
+    color: #fff;
+    height: 100px;
+    width: 700px;
+    animation-duration: 3s;
+    animation-name: appear;
+    animation-iteration-count:infinite;;
+}
 
+@keyframes appear {
+    0%{
+        opacity: 30%;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+/* favorite icon */
+.bxs-heart{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    color: #ddd;
+}
+
+.favorite{
+    color: #d7c610;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);  
+}
 
 /* Button styles */
 .getRateButton {
