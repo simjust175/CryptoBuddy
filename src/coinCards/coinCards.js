@@ -186,6 +186,7 @@ const showProtifolio = () => {
   for (const item of protifolio) {
     getRate(item.id, loadPriceToProfile);
     protifolioDisplay.innerHTML += protifolioItems(item, price);
+    addEventToExit()
   }
 };
 
