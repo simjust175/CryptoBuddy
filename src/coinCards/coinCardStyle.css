@@ -75,8 +75,8 @@ header {
 
 /* Navigation styles */
 nav {
-    margin-bottom: 5px;
-    margin-right: 130px;
+    margin-bottom: 15px;
+    margin-right: 110px;
     font-size: 20px;
 }
 
@@ -99,7 +99,7 @@ nav {
 }
 
 .navbar li a:hover {
-    background: -webkit-linear-gradient(#034c8b, #034076);
+    background: -webkit-linear-gradient(#034c8b, #1d83f1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -111,8 +111,8 @@ nav {
     background-color: #1d83f1;
     border: 3.5px solid #368eecc7;
     position: absolute;
-    right: 19px;
-    top: 15px;
+    right: 50px;
+    top: 20px;
     z-index: 2;
     font-size: 30px;
     display: flex;
@@ -224,7 +224,7 @@ nav {
     background-color: #bacdbb;
 
     /* 3D effect */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px #00000033, 0 4px 8px #0000001a;
     transform: translateY(-2px) translateZ(2);
     transition: transform 0.2s ease;
 }
@@ -344,6 +344,7 @@ nav {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    position: relative;
     animation: fadeIn .2s linear;
 }
 
@@ -371,7 +372,7 @@ nav {
     background: linear-gradient(#023460, #000);
     color: #333;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px #0000001a;
 }
 
 .currencySelectorButton:hover {
@@ -502,6 +503,7 @@ footer {
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-right: 15px;
     display: flex;
     gap: 10px;
 }
@@ -546,11 +548,12 @@ footer {
 }
 
 .chatButtons {
-    /* position: sticky; */
+    position: sticky;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    left: 115px;
+    gap: 3px;
+    left: auto;
+    right: 15px;
     bottom: 20px;
     z-index: 9999;
 }
@@ -596,8 +599,20 @@ a {
 
 
 
-/* Media Query for smartphones */
+/* Media query for smaller screens */
 @media only screen and (max-width: 767px) {
+    header{
+        -webkit-backdrop-filter: blur(0);
+        backdrop-filter: blur(0);
+        height: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .coins{
+        display: flex;
+        flex-direction: column;
+    }
     .coinCard {
         width: 90vw;
         justify-content: flex-start;
@@ -611,6 +626,7 @@ a {
     .coinSymbol {
         margin-top: auto;
         order: -1;
+        height: 65px;
     }
 
     img {
@@ -625,15 +641,6 @@ a {
         top: auto;
         left: auto;
         right: auto;
-    }
-}
-
-/* Media query for smaller screens */
-@media screen and (max-width: 600px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
     }
 
     /* Adjust logo styles */
