@@ -160,11 +160,11 @@ function handleAddCoinButtonClick(e) {
 const protifolioButton = DOMselector(".protifolio");
 const protifolioDisplay = DOMselector(".protifolioDisplay");
 
-const loadPriceToProfile = ({ market_data: { current_price }}) => showProtifolio(current_price[currency]);
+const loadPriceToProfile = ({ market_data: { current_price }}) => price = current_price[currency];
 
-const protifolioItems = (protifolio, price) => {
-  const { img, coin, id } = protifolio
-  getRate(id, loadPriceToProfile);
+const protifolioItems = (item, price) => {
+  const { img, coin, id } = item
+  
   return `
       <div class="protifolioDisplayCard">
         <img src="${img}" alt="${coin}">
@@ -173,12 +173,13 @@ const protifolioItems = (protifolio, price) => {
       </div>`;
 };
 
-const showProtifolio = (price) => {
+const showProtifolio = () => {
   protifolioDisplay.classList.toggle("hidden");
   protifolioDisplay.innerHTML = "";
   protifolioDisplay.innerHTML = `<div class="exitProtifolio">X</div>`;
   addEventToExit()
   for (const item of protifolio) {
+    getRate(item.id, loadPriceToProfile);
     protifolioDisplay.innerHTML += protifolioItems(item, price);
   }
 };
