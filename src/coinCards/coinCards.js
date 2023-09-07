@@ -148,8 +148,8 @@ function handleAddCoinButtonClick(e) {
       id: coinId,
       coin: button.dataset.coinName,
       img: button.dataset.img,
-      
       // price: ({market_data: {current_price}}, currency) => current_price[currency]
+      
     });
 
     button.classList.toggle('coinAdded');
@@ -177,18 +177,20 @@ const protifolioItems = (item, price) => {
       </div>`;
 };
 
-function showProtifolio (){
+const showProtifolio = () => {
   protifolioDisplay.classList.toggle("hidden");
   protifolioDisplay.innerHTML = "";
   protifolioDisplay.innerHTML = `<div class="exitProtifolio">X</div>`;
   addEventToExit()
+  const price = "$2.35" // fake price util function's fixed
   for (const item of protifolio) {
     getRate(item.id, loadPriceToProfile);
     protifolioDisplay.innerHTML += protifolioItems(item, price);
   }
 };
 
-const removeCoin = (name) => protifolio = protifolio.filter((item) => item.coin !== name)
+// 
+const removeCoin = (e) => {console.log(e.target)}
 
 const removeCoinEventHandler = (e) => removeCoin(e.target.dataset.id)
 
