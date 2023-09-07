@@ -12,7 +12,7 @@ const coinCard = (coin) => {
       <button type="button" class="addCoinButton" data-id="${id}" data-name="${name}" data-img="${small}">
         <h3>+</h3>
       </button>
-      <i class='bx bxs-heart' id="favorite${name}"></i>
+      <i class='bx bxs-heart' id="favorite${id}"></i>
       <div class="coinName">
         <h3>${name}</h3>
       </div>
@@ -140,18 +140,22 @@ function handleAddCoinButtonClick(e) {
   const target = e.target;
   const eventOnChild = target.localName === 'h3';
   const button = eventOnChild ? target.parentNode : target;
-  const coinName = button.dataset.name;
-  if (coinName && !protifolio.some((coin) => coin.coin === coinName)) {
+  const coinId = button.dataset.id;
+  console.log(coinId);
+  if (coinId && !protifolio.some((coin) => coin.id === coinId)) {
     protifolio.push({
       index: counter++,
-      coin: coinName,
+      id: coinId,
+      coin: button.dataset.coinName,
       img: button.dataset.img,
-      id: button.dataset.id,
+      
       // price: ({market_data: {current_price}}, currency) => current_price[currency]
     });
+
     button.classList.toggle('coinAdded');
     addedMessage.classList.toggle('hidden');
-    const favorite = DOMselector(`#favorite${coinName}`);
+    const favorite = DOMselector(`#favorite${coinId}`);
+    console.log(protifolio);
     favorite.classList.add("favorite")
     button.innerHTML = '-';
   }
@@ -173,7 +177,7 @@ const protifolioItems = (item, price) => {
       </div>`;
 };
 
-const showProtifolio = () => {
+function showProtifolio (){
   protifolioDisplay.classList.toggle("hidden");
   protifolioDisplay.innerHTML = "";
   protifolioDisplay.innerHTML = `<div class="exitProtifolio">X</div>`;
