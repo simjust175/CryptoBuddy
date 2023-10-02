@@ -122,6 +122,7 @@ const currencySelector = (e) => {
   ils.classList.toggle("selectedCurrency", clickedCurrency === "ils");
   return currency;
 };
+
 usd.addEventListener("click", currencySelector);
 ils.addEventListener("click", currencySelector);
 
@@ -182,7 +183,7 @@ const showProtifolio = () => {
   protifolioDisplay.innerHTML = "";
   protifolioDisplay.innerHTML = `<div class="exitProtifolio">X</div>`;
   addEventToExit()
-  const price = "$2.35" // fake price util function's fixed
+  const price = "$2.35" // fake price un`til function's fixed
   for (const item of protifolio) {
     getRate(item.id, loadPriceToProfile);
     protifolioDisplay.innerHTML += protifolioItems(item, price);
@@ -190,7 +191,7 @@ const showProtifolio = () => {
   }
 };
 
-// 
+
 const removeCoin = (e) => {console.log(e.target)}
 
 const removeCoinEventHandler = (e) => removeCoin(e.target.dataset.id)
